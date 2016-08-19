@@ -62,7 +62,6 @@
             this.Player1.Name = "Player1";
             this.Player1.Size = new System.Drawing.Size(213, 26);
             this.Player1.TabIndex = 2;
-            
             // 
             // Player2
             // 
@@ -98,6 +97,7 @@
             this.MinimumSize = new System.Drawing.Size(391, 162);
             this.Name = "NameEntryForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tic Tac Toe";
             this.ResumeLayout(false);
             this.PerformLayout();

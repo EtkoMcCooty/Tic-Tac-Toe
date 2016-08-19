@@ -12,9 +12,12 @@ namespace TicTacToe
 {
     public partial class Form1 : Form
     {
-        bool playerOneTurn = true; // true = O's turn, false = Xs turn
-        int turn_number = 0; // keeps track of how many turns have passed
+        static int turn_number = 0; // keeps track of how many turns have passed
         static String player1, player2;
+        static bool playerOneTurn { get; set; } // true = O's turn, false = Xs turn
+        PlayAgain play_again = new PlayAgain();
+
+
 
         public Form1()
         {
@@ -101,7 +104,8 @@ namespace TicTacToe
                 }
 
                 MessageBox.Show($"{winning_player} is the winner!");
-                newGameToolStripMenuItem.PerformClick();
+
+               playAgain(); // Ask players if they want to play again
             }
             else
             {
@@ -109,7 +113,10 @@ namespace TicTacToe
                 {
                     draw_count.Text = (int.Parse(draw_count.Text) + 1).ToString();
                     MessageBox.Show("The game is a draw...");
-                    newGameToolStripMenuItem.PerformClick();
+
+                    playAgain();
+                   
+                    
                 }
             }
         }
@@ -187,5 +194,27 @@ namespace TicTacToe
             label1.Text = player1;
             label2.Text = player2;
         }
+
+        private void playAgain()
+        {
+
+            play_again.yesButton.DialogResult = DialogResult.Yes; // Allows dialogue box to run smoothly
+            play_again.noButton.DialogResult = DialogResult.No;
+            play_again.ShowDialog();
+
+
+            if (play_again.yesButtonClicked)
+            {
+                newGameToolStripMenuItem.PerformClick();
+
+                play_again.yesButtonClicked = false;
+            }
+            else
+            {
+                exitToolStripMenuItem.PerformClick();
+                play_again.noButtonClicked = false;
+            }
+        }
+        
     }
 }
